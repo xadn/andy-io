@@ -1,0 +1,17 @@
+.andy {
+	font-family: 'Varela Round', sans-serif;
+}
+
+.io {
+	font-family: 'Varela Round', sans-serif;
+}
+
+.title {
+	font-size: 5em;
+	text-align: center;
+}
+
+.vertical-middle {
+    position: absolute;
+    top: 40%;
+}
