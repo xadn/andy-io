@@ -2,6 +2,9 @@
   "name": "andy-io",
   "version": "0.0.1",
   "dependencies": {
-    "express": "2.2.0"
+    "express": "2.4.3"
+    , "stylus": ">= 0.0.1"
+    , "jade": ">= 0.0.1"
+    , "mongodb": ">= 0.9.6-7"
   }
 }
