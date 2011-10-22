@@ -8,5 +8,4 @@ script(type='text/javascript')
 
 	socket.on('message', function (data) {
 		$('body').append('<p>' + data.message + '</p>')
-		socket.emit('my other event', { my: 'data' });
 	});
