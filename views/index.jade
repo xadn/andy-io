@@ -2,3 +2,10 @@ div.container
 	h1.title.vertical-middle.span-24
 		span.andy andy.
 		span.io io
+	
+script(type='text/javascript')
+	var socket = io.connect('http://localhost');
+	socket.on('message', function (data) {
+		$('body').append('<p>' + data.message + '</p>')
+		socket.emit('my other event', { my: 'data' });
+	});
