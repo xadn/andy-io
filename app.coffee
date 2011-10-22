@@ -5,6 +5,10 @@ io = require('socket.io').listen(app)
 app.set 'view engine', 'jade'
 app.use express.static(__dirname + '/public')
 app.listen process.env.PORT || 5000
+
+io.configure ->
+	io.set "transports", ["xhr-polling"]
+	io.set "polling duration", 10
  
 app.get '/', (request, response) ->
 	response.render 'index', { title: 'andy.io' }

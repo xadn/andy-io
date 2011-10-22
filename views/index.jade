@@ -4,7 +4,7 @@ div.container
 		span.io io
 	
 script(type='text/javascript')
-	var socket = io.connect( document.URL );
+	var socket = io.connect();
 
 	socket.on('message', function (data) {
 		$('body').append('<p>' + data.message + '</p>')
