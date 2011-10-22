@@ -20,6 +20,8 @@ io.sockets.on 'connection', (socket) ->
 	socket.emit 'message', { message: "hello world" }
 	console.log "sent message"
 
+
+
 	# setInterval ( ->
 	# 	socket.emit 'message', { message: "hello world" }
 	# 	console.log "sent message"
