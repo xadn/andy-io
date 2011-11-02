@@ -13,19 +13,51 @@ div.container
 
 		div#recievedMessages
 
+image(id="macCursor", style="display: none", src="/images/macCursor.png")
+
 			
 script(type='text/javascript')
 	var socket = io.connect();
+	var cursors = {};
 
-	socket.on('message', function (data) {
+	socket.on('message', function ( data ) {
 		$('#recievedMessages').prepend("<p class='message'>" + data.message + "</p>")
 	});
 
+	socket.on('mouseMovement', function( data ) {
+		if (!cursors[data.client_id]) {
+			$('body').append('<img id="'+ data.client_id +'" src="/images/macCursor.png"></img>');
+			cursors[data.client_id] = $('#'+data.client_id);
+		}
+
+		var offsetX = data.x * $(window).width();
+		var offsetY = data.y * $(window).height();
+
+		cursors[data.client_id].offset({ top: offsetY, left: offsetX });
+	});
+
+	socket.on('clientDisconnect', function( data ) {
+		if (cursors[data.client_id]) {
+			cursors[data.client_id].remove();
+			delete cursors[data.client_id];
+		}
+	});
+
+	var onSendMessage = function() {
+		socket.emit('message', { message : $('#sendMessageText').val() });
+		return false;
+	};
+
+	var onMouseMove = function( mouseEvent ) {
+		var percentX = mouseEvent.pageX / $(window).width();
+		var percentY = mouseEvent.pageY / $(window).height();
+		socket.emit('mouseMovement', { x : percentX, y : percentY });
+		//- console.log(percentX + " " + percentY);
+	};
+
 	$(document).ready(function() {
-		$('form').submit(function() {
-			$.post('/messages', { message : $('#sendMessageText').val() });
-			return false;
-		});
+		$('form').submit(onSendMessage);
+		$(document).mousemove(onMouseMove);
 	});
 
 	
