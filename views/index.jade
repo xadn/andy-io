@@ -65,13 +65,18 @@ script(type='text/javascript')
 			socket.emit('mouseMovement', { x : percentX, y : percentY });
 			prevPercentX = percentX;
 			prevPercentY = percentY;
+
+			$(document).unbind('mousemove', onMouseMove);
+			setTimeout(function() {
+				$(document).bind('mousemove', onMouseMove);
+			}, 50);
 		}
 	};
 
 
 	$(document).ready(function() {
 		$('form').submit(onSendMessage);
-		$(document).mousemove(onMouseMove);
+		$(document).bind('mousemove', onMouseMove);
 	});
 
 	
