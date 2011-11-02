@@ -15,14 +15,9 @@ io.configure ->
  
 app.get '/', (request, response) ->
 	response.render 'index', { title: 'andy.io' }
- 
-app.get '/say/:text', (request, response) ->
-	response.send request.params.text
-	sockets.forEach (socket) -> socket.emit 'message', { message: request.params.text }
 
 app.post '/messages', (request, response) ->
-	console.log request.params.serialize
-	sockets.forEach (socket) -> socket.emit 'message', { message: request.params.hello }
+	sockets.forEach (socket) -> socket.emit 'message', { message : request.body.message }
 
 io.sockets.on 'connection', (client) ->
 	sockets.push client

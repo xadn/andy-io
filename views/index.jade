@@ -5,23 +5,27 @@ div.container
 		span.io io
 
 	div.span-12.prepend-6.append-6.last
-		div#messageBox
+
+		div#sendMessage.message.message-top
+			form(name="sendMessage", action="")
+				input(type="text", id="sendMessageText")
+				input(type="submit", id="sendMessageButton")
+
+		div#recievedMessages
 
 			
 script(type='text/javascript')
 	var socket = io.connect();
 
 	socket.on('message', function (data) {
-
-		var side = ($('.message').length % 2) ? 'top' : '';
-		
-		console.log(side);
-
-		$('#messageBox').append("<p class='message message-" + side + "'>" + data.message + "</p>")
+		$('#recievedMessages').prepend("<p class='message'>" + data.message + "</p>")
 	});
 
-	doSubmit = function() {
-		$.post('/messages', {hello : "world"}, function () {
-			alert("recieved by server");
-		})
-	};
+	$(document).ready(function() {
+		$('form').submit(function() {
+			$.post('/messages', { message : $('#sendMessageText').val() });
+			return false;
+		});
+	});
+
+	

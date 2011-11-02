@@ -16,16 +16,9 @@
     top: 40%;
 }
 
-#messageBox {
-	width: 100%;
-	margin: 0 auto;
-	/*background-color: #E8E8E8;*/
-	/*min-height: 20em;*/
-	/*padding: 1em;*/
+#sendMessage input[type='text'] {
+	width: 85%;
 }
-
-/* THE SPEECH BUBBLE
-------------------------------------------------------------------------------------------------------------------------------- */
 
 .message {
 	position:relative;
@@ -40,22 +33,13 @@
 	border-radius:10px;
 }
 
-/* Variant : for left positioned triangle
------------------------------------------- */
-
 .message.message-left {
 	margin-left:30px;
 }
 
-/* Variant : for right positioned triangle
------------------------------------------- */
-
 .message.message-right {
 	margin-right:30px;
 }
-
-/* THE TRIANGLE
-------------------------------------------------------------------------------------------------------------------------------- */
 
 .message:before {
 	content:"";
@@ -70,7 +54,6 @@
     width:0;
 }
 
-/* creates the smaller  triangle */
 .message:after {
 	content:"";
 	position:absolute;
@@ -83,9 +66,6 @@
     display:block; 
     width:0;
 }
-
-/* Variant : top
------------------------------------------- */
 
 /* creates the larger triangle */
 .message.message-top:before {
@@ -105,9 +85,6 @@
     border-width:0 13px 13px;
 }
 
-/* Variant : left
------------------------------------------- */
-
 /* creates the larger triangle */
 .message.message-left:before {
 	top:10px; /* controls vertical position */
@@ -125,9 +102,6 @@
 	border-width:9px 21px 9px 0;
 	border-color:transparent #fff;
 }
-
-/* Variant : right
------------------------------------------- */
 
 /* creates the larger triangle */
 .message.message-right:before {
