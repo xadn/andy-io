@@ -39,8 +39,10 @@ script(type='text/javascript')
 
 	socket.on('clientDisconnect', function( data ) {
 		if (cursors[data.client_id]) {
-			cursors[data.client_id].remove();
-			delete cursors[data.client_id];
+			cursors[data.client_id].fadeOut('slow', function() {
+				cursors[data.client_id].remove();
+				delete cursors[data.client_id];
+			});
 		}
 	});
 
