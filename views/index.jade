@@ -19,6 +19,7 @@ image(id="macCursor", style="display: none", src="/images/macCursor.png")
 script(type='text/javascript')
 	var socket = io.connect();
 	var cursors = {};
+	var lastMouseEvent = {};
 
 	socket.on('message', function ( data ) {
 		$('#recievedMessages').prepend("<p class='message'>" + data.message + "</p>")
@@ -49,15 +50,19 @@ script(type='text/javascript')
 	};
 
 	var onMouseMove = function( mouseEvent ) {
-		var percentX = mouseEvent.pageX / $(window).width();
-		var percentY = mouseEvent.pageY / $(window).height();
+		lastMouseEvent = mouseEvent;
+	};
+
+	var sendMousePosition = function() {
+		var percentX = lastMouseEvent.pageX / $(window).width();
+		var percentY = lastMouseEvent.pageY / $(window).height();
 		socket.emit('mouseMovement', { x : percentX, y : percentY });
-		//- console.log(percentX + " " + percentY);
 	};
 
 	$(document).ready(function() {
 		$('form').submit(onSendMessage);
 		$(document).mousemove(onMouseMove);
+		setInterval(sendMousePosition, 100);
 	});
 
 	
