@@ -1,11 +1,27 @@
 div.container
-	h1.title.vertical-middle.span-24
+
+	h1.title.span-24.last
 		span.andy andy.
 		span.io io
-	
+
+	div.span-12.prepend-6.append-6.last
+		div#messageBox
+
+			
 script(type='text/javascript')
 	var socket = io.connect();
 
 	socket.on('message', function (data) {
-		$('body').append('<p>' + data.message + '</p>')
+
+		var side = ($('.message').length % 2) ? 'top' : '';
+		
+		console.log(side);
+
+		$('#messageBox').append("<p class='message message-" + side + "'>" + data.message + "</p>")
 	});
+
+	doSubmit = function() {
+		$.post('/messages', {hello : "world"}, function () {
+			alert("recieved by server");
+		})
+	};
