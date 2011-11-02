@@ -51,20 +51,27 @@ script(type='text/javascript')
 		return false;
 	};
 
+	var prevPercentX = 0;
+	var prevPercentY = 0;
+
 	var onMouseMove = function( mouseEvent ) {
-		lastMouseEvent = mouseEvent;
+		var percentX = mouseEvent.pageX / $(window).width();
+		var percentY = mouseEvent.pageY / $(window).height();
+
+		var diffX = Math.abs(prevPercentX - percentX);
+		var diffY = Math.abs(prevPercentY - percentY);
+
+		if (diffX > 0.01 || diffY > 0.01 || diffX+diffY > 0.014 ) {
+			socket.emit('mouseMovement', { x : percentX, y : percentY });
+			prevPercentX = percentX;
+			prevPercentY = percentY;
+		}
 	};
 
-	var sendMousePosition = function() {
-		var percentX = lastMouseEvent.pageX / $(window).width();
-		var percentY = lastMouseEvent.pageY / $(window).height();
-		socket.emit('mouseMovement', { x : percentX, y : percentY });
-	};
 
 	$(document).ready(function() {
 		$('form').submit(onSendMessage);
 		$(document).mousemove(onMouseMove);
-		setInterval(sendMousePosition, 100);
 	});
 
 	
