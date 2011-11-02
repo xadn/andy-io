@@ -16,9 +16,6 @@ io.configure ->
 app.get '/', (request, response) ->
 	response.render 'index', { title: 'andy.io' }
 
-# app.post '/messages', (request, response) ->
-# 	sockets.forEach (socket) -> socket.emit 'message', { message : request.body.message }
-
 io.sockets.on 'connection', (client) ->
 	sockets.push client
 
@@ -30,8 +27,8 @@ io.sockets.on 'connection', (client) ->
 		recipientSockets.forEach (socket) -> socket.emit 'mouseMovement', data
 
 	client.on 'message', (data) ->
-		recipientSockets = sockets.filter (socket) -> socket != client
-		recipientSockets.forEach (socket) -> socket.emit 'message', data
+		# recipientSockets = sockets.filter (socket) -> socket != client
+		sockets.forEach (socket) -> socket.emit 'message', data
 
 	client.on 'disconnect', ->
 		sockets = sockets.filter (socket) -> socket != client
