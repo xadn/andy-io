@@ -1,35 +1,34 @@
 express = require('express')
 app	= express.createServer()
 io = require('socket.io').listen(app)
+_ = require('underscore')
 
 app.set 'view engine', 'jade'
 app.use express.static(__dirname + '/public')
+app.use require('connect-assets')()
 app.use express.bodyParser()
 app.listen process.env.PORT || 5000
-
-sockets = []
 
 io.configure ->
 	io.set "transports", ["xhr-polling"]
 	io.set "polling duration", 10
- 
+
 app.get '/', (request, response) ->
 	response.render 'index', { title: 'andy.io' }
 
+
+sockets = []
+
 io.sockets.on 'connection', (client) ->
 	sockets.push client
-
 	client.emit 'message', { message: "hello world" }
 
-	client.on 'mouseMovement', (data) ->
-		data.client_id = client.id
-		recipientSockets = sockets.filter (socket) -> socket != client
-		recipientSockets.forEach (socket) -> socket.emit 'mouseMovement', data
+	client.on 'updateCursor', (data) ->
+		_(sockets).without(client).forEach (socket) -> socket.emit 'updateCursor', _(data).extend {id : Number client.id}
 
 	client.on 'message', (data) ->
-		# recipientSockets = sockets.filter (socket) -> socket != client
-		sockets.forEach (socket) -> socket.emit 'message', data
+		_(sockets).without(client).forEach (socket) -> socket.emit 'message', data
 
 	client.on 'disconnect', ->
-		sockets = sockets.filter (socket) -> socket != client
-		sockets.forEach (socket) -> socket.emit 'clientDisconnect', { client_id : client.id }
+		sockets = _(sockets).without(client)
+		sockets.forEach (socket) -> socket.emit 'deleteCursor', { id : client.id }

@@ -3,9 +3,11 @@
 	"version"		:"0.0.1",
 	"dependencies"	:{
 		"express"		:">= 2.4.3",
+		"connect-assets":">= 2.1.4",
 		"coffee-script"	:">= 1.1.2",
 		"jade"			:">= 0.0.1",
 		"socket.io"		:">= 0.8.5",
-		"jquery"		:">= 1.6.3"
+		"jquery"		:">= 1.6.3",
+		"underscore" 	:">= 1.2.2"
 	}
 }

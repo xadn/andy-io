@@ -7,76 +7,16 @@ div.container
 	div.span-12.prepend-6.append-6.last
 
 		div#sendMessage.message.message-top
-			form(name="sendMessage", action="")
-				input(type="text", id="sendMessageText")
-				input(type="submit", id="sendMessageButton")
+			form(onsubmit="return false")
+				input(type="text")
+				input(type="submit")
 
-		div#recievedMessages
+		ul#recievedMessages
 
-image(id="macCursor", style="display: none", src="/images/macCursor.png")
+//- image(id="macCursor", style="display: none", src="/images/macCursor.png")
 
-			
-script(type='text/javascript')
+script
 	var socket = io.connect();
-	var cursors = {};
-	var lastMouseEvent = {};
 
-	socket.on('message', function ( data ) {
-		$('#recievedMessages').prepend("<p class='message'>" + data.message + "</p>")
-	});
-
-	socket.on('mouseMovement', function( data ) {
-		if (!cursors[data.client_id]) {
-			$('body').append('<img id="'+ data.client_id +'" src="/images/macCursor.png"></img>');
-			cursors[data.client_id] = $('#'+data.client_id);
-		}
-
-		var offsetX = data.x * $(window).width();
-		var offsetY = data.y * $(window).height();
-
-		cursors[data.client_id].offset({ top: offsetY, left: offsetX });
-	});
-
-	socket.on('clientDisconnect', function( data ) {
-		if (cursors[data.client_id]) {
-			cursors[data.client_id].fadeOut('slow', function() {
-				cursors[data.client_id].remove();
-				delete cursors[data.client_id];
-			});
-		}
-	});
-
-	var onSendMessage = function() {
-		socket.emit('message', { message : $('#sendMessageText').val() });
-		return false;
-	};
-
-	var prevPercentX = 0;
-	var prevPercentY = 0;
-
-	var onMouseMove = function( mouseEvent ) {
-		var percentX = mouseEvent.pageX / $(window).width();
-		var percentY = mouseEvent.pageY / $(window).height();
-
-		var diffX = Math.abs(prevPercentX - percentX);
-		var diffY = Math.abs(prevPercentY - percentY);
-
-		if (diffX > 0.01 || diffY > 0.01 || diffX+diffY > 0.014 ) {
-			socket.emit('mouseMovement', { x : percentX, y : percentY });
-			prevPercentX = percentX;
-			prevPercentY = percentY;
-
-			$(document).unbind('mousemove', onMouseMove);
-			setTimeout(function() {
-				$(document).bind('mousemove', onMouseMove);
-			}, 100);
-		}
-	};
-
-
-	$(document).ready(function() {
-		$('form').submit(onSendMessage);
-		$(document).bind('mousemove', onMouseMove);
-	});
-
-	
+!= js('messages')
+!= js('cursors')
