@@ -13,10 +13,9 @@ div.container
 
 		ul#recievedMessages
 
-//- image(id="macCursor", style="display: none", src="/images/macCursor.png")
-
 script
 	var socket = io.connect();
+	//- $("body").css({"-moz-transform" : "rotate(45deg)", "-webkit-transform" : "rotate(45deg)"});
 
 != js('messages')
 != js('cursors')
