@@ -24,7 +24,7 @@
 			this.model.bind('change', this.render);
 		},
 		render: function(){
-			$(this.el).html('<span style="color:black;">'+this.model.get('text')+'</span>');
+			$(this.el).html('<div class="message">'+this.model.get('text')+'</div>');
 			return this;
 		},
 		unrender: function(){
@@ -49,13 +49,13 @@
 			}, this);
 		},
 		sendMessage: function(){
-			var message = new Message();
-			message.set({
-				text: $(':input[type=text]').val()
-			});
-			message.save();
-			this.collection.add(message);
+			var messageText = $(':input[type=text]').val();
 			$(':input[type=text]').val('');
+			if (messageText) {
+				var message = new Message({text: messageText});
+				message.save();
+				this.collection.add(message);
+			}
 		},
 		recieveMessage: function(message){
 			this.collection.add(message);
@@ -64,7 +64,7 @@
 			var messageView = new MessageView({
 				model: message
 			});
-			$('#recievedMessages', this.el).append(messageView.render().el);
+			$('#recievedMessages', this.el).prepend(messageView.render().el);
 		}
 	});
 
