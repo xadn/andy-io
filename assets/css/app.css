@@ -20,6 +20,10 @@
 	width: 85%;
 }
 
+li {
+	list-style: none;
+}
+
 .message {
 	position:relative;
 	padding:15px;
