@@ -10,6 +10,8 @@ app.use express.bodyParser()
 app.listen 8080
 
 app.get '/', (request, response) ->
+	response.render 'index', { title: 'andy.io' }
+	
 
 sockets = []
 
