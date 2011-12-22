@@ -24,7 +24,7 @@
 			this.model.bind('change', this.render);
 		},
 		render: function(){
-			$(this.el).html('<div class="message">'+this.model.get('text')+'</div>');
+			$(this.el).html('<div class="message">'+this.model.escape('text')+'</div>');
 			return this;
 		},
 		unrender: function(){
