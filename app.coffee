@@ -1,3 +1,5 @@
+# process.env.NODE_ENV = 'production'
+
 express = require('express')
 app	= express.createServer()
 io = require('socket.io').listen(app)
