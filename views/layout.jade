@@ -1,13 +1,16 @@
-!!! 5
+doctype html
 html
 	head
 		title= title
-		!= css('app')
+
+		link(rel='stylesheet', href='/stylesheets/app.css')
 		link(rel='stylesheet', href='/stylesheets/blueprint/screen.css', media='screen, projection')
 		link(rel='stylesheet', href='/stylesheets/blueprint/print.css', media='print')
 		link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Varela+Round')
-		!= js('jquery')
-		!= js('underscore')
-		!= js('backbone')
-		script(src='/socket.io/socket.io.js')
+
+		
+
+		script(data-main='scripts/main', src='scripts/libs/require.js')
+
+
 	body!= body
