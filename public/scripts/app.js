@@ -1,5 +1,10 @@
-define(['jquery', 'models/localcursor', 'models/cursor-collection', 'views/localcursor', 'views/cursor-collection', '/socket.io/socket.io.js'],
-	function($, LocalCursor, CursorCollection, LocalCursorView, CursorCollectionView){
+define(
+	['jquery',
+	'models/localcursor', 'models/cursor-collection', 'views/localcursor', 'views/cursor-collection',
+	'models/message-collection', 'views/message-collection', 'views/message',
+	'/socket.io/socket.io.js'],
+	function($, LocalCursor, CursorCollection, LocalCursorView, CursorCollectionView,
+		MessageCollection, MessageCollectionView, MessageView){
 
 		return {
 			initialize: function() {
@@ -10,6 +15,10 @@ define(['jquery', 'models/localcursor', 'models/cursor-collection', 'views/local
 				var localCursorView = new LocalCursorView({model: localCursor});
 
 				var cursorCollectionView = new CursorCollectionView({collection: cursorCollection});
+
+				var messageCollection = new MessageCollection();
+
+				var messageCollectionView = new MessageCollectionView({collection: messageCollection});
 
 				var socket = io.connect();
 
