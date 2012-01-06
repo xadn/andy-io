@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'models/message-collection', 'views/message'], function($, _, Backbone, MessageCollection, MessageView){
+define(['jquery', 'underscore', 'backbone', 'models/message-collection', 'models/message', 'views/message'], function($, _, Backbone, MessageCollection, Message, MessageView){
 
 	return Backbone.View.extend({
 		el: $('body'),
@@ -10,7 +10,7 @@ define(['jquery', 'underscore', 'backbone', 'models/message-collection', 'views/
 		},
 
 		initialize: function(){
-			_.bindAll(this, 'render', 'sendMessage', 'recieveMessage', 'appendMessage');
+			_.bindAll(this, 'render', 'sendMessage', 'appendMessage');
 
 			this.collection.bind('add', this.appendMessage);
 
@@ -28,13 +28,9 @@ define(['jquery', 'underscore', 'backbone', 'models/message-collection', 'views/
 			$(':input[type=text]').val('');
 			if (messageText) {
 				var message = new Message({text: messageText});
-				message.save();
+				// message.save();
 				this.collection.add(message);
 			}
-		},
-
-		recieveMessage: function(message){
-			this.collection.add(message);
 		},
 
 		appendMessage: function(message){

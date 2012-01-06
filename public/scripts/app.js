@@ -30,6 +30,10 @@ define(
 				socket.on('updateCursor', cursorCollection.updateData);
 
 				socket.on('deleteCursor', cursorCollection.deleteData);
+
+				socket.on('message', function(data) {
+					messageCollection.add(data);
+				});
 			}
 		};
 
