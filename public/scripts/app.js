@@ -8,6 +8,9 @@ define(
 
 		return {
 			initialize: function() {
+
+				var socket = io.connect();
+
 				var localCursor = new LocalCursor();
 
 				var cursorCollection = new CursorCollection();
@@ -20,20 +23,22 @@ define(
 
 				var messageCollectionView = new MessageCollectionView({collection: messageCollection});
 
-				var socket = io.connect();
 
+				messageCollection.bind('send', function(message) {
+					socket.emit('message', message);
+				});
 
 				localCursor.bind('change', function() {
 					socket.emit('updateCursor', localCursor);
 				});
 
-				socket.on('updateCursor', cursorCollection.updateData);
-
-				socket.on('deleteCursor', cursorCollection.deleteData);
-
 				socket.on('message', function(data) {
 					messageCollection.add(data);
 				});
+
+				socket.on('updateCursor', cursorCollection.updateData);
+
+				socket.on('deleteCursor', cursorCollection.deleteData);
 			}
 		};
 

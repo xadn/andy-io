@@ -11,15 +11,12 @@ define(['jquery', 'underscore', 'backbone', 'models/message-collection', 'models
 
 		initialize: function(){
 			_.bindAll(this, 'render', 'sendMessage', 'appendMessage');
-
 			this.collection.bind('add', this.appendMessage);
-
-			this.render();
 		},
 
 		render: function(){
 			_(this.collection.models).each(function(message){
-				appendMessage(message);
+				this.appendMessage(message);
 			}, this);
 		},
 
@@ -28,7 +25,7 @@ define(['jquery', 'underscore', 'backbone', 'models/message-collection', 'models
 			$(':input[type=text]').val('');
 			if (messageText) {
 				var message = new Message({text: messageText});
-				// message.save();
+				this.collection.trigger('send', message);
 				this.collection.add(message);
 			}
 		},
