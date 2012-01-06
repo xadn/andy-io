@@ -3,32 +3,11 @@ define(['jquery', 'underscore', 'backbone', 'models/cursor-collection', 'views/c
 	return Backbone.View.extend({
 		el: $('body'),
 
-		model: CursorCollection,
+		collection: CursorCollection,
 
 		initialize: function(){
-			_.bindAll(this, 'onUpdateCursor', 'onDeleteCursor', 'appendCursor');
-			this.collection = new CursorCollection();
+			_.bindAll(this, 'appendCursor');
 			this.collection.bind('add', this.appendCursor);
-			window.socket.on('updateCursor', this.onUpdateCursor);
-			window.socket.on('deleteCursor', this.onDeleteCursor);
-		},
-
-		onUpdateCursor: function(cursor) {
-			var cursor = this.collection.get(cursor.id)
-			if (!cursor) {
-				this.collection.add(cursor);
-			} else {
-				cursor.set({
-					x: cursor.x,
-					y: cursor.y
-				});
-			}
-		},
-
-		onDeleteCursor: function(cursor) {
-			var cursor = this.collection.get(cursor.id);
-			cursor.el.fadeOut('slow');
-			this.collection.remove(cursor);
 		},
 
 		appendCursor: function(cursor) {

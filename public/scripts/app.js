@@ -3,10 +3,21 @@ define(['jquery', 'models/localcursor', 'models/cursor-collection', 'views/local
 
 		console.log('app loaded');
 
-		var socket = io.connect();
 
-		var localCursor = new LocalCursor({socket: socket});
+		var localCursor = new LocalCursor();
+
+		var cursorCollection = new CursorCollection();
 
 		var localCursorView = new LocalCursorView({model: localCursor});
 
+		var cursorCollectionView = new CursorCollectionView({collection: cursorCollection});
+
+		var socket = io.connect();
+
+
+		localCursor.bind('change', function() {
+			socket.emit('updateCursor', localCursor);
+		});
+
+		socket.on('updateCursor', cursorCollection.updateData);
 });

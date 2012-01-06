@@ -14,9 +14,7 @@ define(['jquery', 'underscore', 'backbone', 'models/localcursor'], function($, _
 		},
 
 		onMouseMove: function(e) {
-			this.model.setLeft(e.pageX);
-			this.model.setTop(e.pageY);
-			this.model.save();
+			this.model.setPosition(e.pageX, e.pageY);
 		}
 	});
 
