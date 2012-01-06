@@ -8,9 +8,12 @@
 			routers: 	'app/routers',
 			jquery: 	'libs/jquery',
 			underscore: 'libs/underscore',
-			backbone: 	'libs/backbone'
+			backbone: 	'libs/backbone',
+			domready: 	'libs/domReady'
 		}
 	});
 
-	require(['app']);
+	require(['app'], function(App) {
+		App.initialize();
+	});
 }());

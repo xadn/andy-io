@@ -7,7 +7,7 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
 		},
 
 		initialize: function() {
-			_.bindAll(this, 'setPosition', 'getLeft', 'getTop');
+			_.bindAll(this, 'setPosition', 'getLeft', 'getTop', 'sync');
 		},
 
 		setPosition: function(left, top) {
@@ -23,7 +23,9 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
 
 		getTop: function() {
 			return this.get('y') * $(window).width();
-		}
+		},
+
+		sync: function() {}
 	});
 
 });

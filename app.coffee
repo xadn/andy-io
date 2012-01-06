@@ -26,4 +26,4 @@ io.sockets.on 'connection', (client) ->
 
 	client.on 'disconnect', ->
 		sockets = _(sockets).without(client)
-		sockets.forEach (socket) -> socket.emit 'deleteCursor', { id : client.id }
+		sockets.forEach (socket) -> socket.emit 'deleteCursor', {id : Number client.id}

@@ -4,7 +4,7 @@ define(['jquery', 'underscore', 'backbone', 'models/cursor'], function($, _, Bac
 		model: Cursor,
 
 		initialize: function(){
-			_.bindAll(this, 'updateData');
+			_.bindAll(this, 'updateData', 'deleteData');
 		},
 
 		updateData: function(data) {
@@ -14,6 +14,14 @@ define(['jquery', 'underscore', 'backbone', 'models/cursor'], function($, _, Bac
 				cursor.set({x: data.x, y: data.y});
 			} else {
 				this.add(data);
+			}
+		},
+
+		deleteData: function(data) {
+			var cursor = this.get(data.id);
+
+			if (cursor) {
+				cursor.destroy();
 			}
 		}
 	});

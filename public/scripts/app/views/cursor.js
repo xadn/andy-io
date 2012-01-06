@@ -12,7 +12,10 @@ define(['jquery', 'underscore', 'backbone', 'models/cursor'], function($, _, Bac
 
 		initialize: function() {
 			_.bindAll(this, 'render', 'unrender');
+
 			this.model.bind('change', this.render);
+			this.model.bind('destroy', this.unrender);
+
 			$(this.el).attr('src', this.OSToIcon[this.model.get('OS')]);
 		},
 
