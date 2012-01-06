@@ -1,6 +1,12 @@
-define(['jquery', 'models/cursor', 'models/localcursor', 'views/cursor',  'collectionviews/cursor'],
-	function($, Cursor, LocalCursor, CursorView, CursorCollectionView){
+define(['jquery', 'models/localcursor', 'models/cursor-collection', 'views/localcursor', 'views/cursor-collection', '/socket.io/socket.io.js'],
+	function($, LocalCursor, CursorCollection, LocalCursorView, CursorCollectionView){
 
-		console.log('app.js loaded');
+		console.log('app loaded');
+
+		var socket = io.connect();
+
+		var localCursor = new LocalCursor({socket: socket});
+
+		var localCursorView = new LocalCursorView({model: localCursor});
 
 });
