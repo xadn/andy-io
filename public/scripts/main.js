@@ -10,7 +10,6 @@
 		}
 	});
 
-	require(['backbone', 'io'], function() {
-		console.log('backbone loaded');
+	require(['app'], function() {
 	});
 }());
