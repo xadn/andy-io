@@ -24,21 +24,21 @@ define(
 				var messageCollectionView = new MessageCollectionView({collection: messageCollection});
 
 
-				messageCollection.bind('send', function(message) {
-					socket.emit('message', message);
+				socket.on('updateCursor', cursorCollection.updateData);
+
+				socket.on('deleteCursor', cursorCollection.deleteData);
+
+				socket.on('message', function(data) {
+					messageCollection.add(data);
 				});
 
 				localCursor.bind('change', function() {
 					socket.emit('updateCursor', localCursor);
 				});
 
-				socket.on('message', function(data) {
-					messageCollection.add(data);
+				messageCollection.bind('send', function(message) {
+					socket.emit('message', message);
 				});
-
-				socket.on('updateCursor', cursorCollection.updateData);
-
-				socket.on('deleteCursor', cursorCollection.deleteData);
 			}
 		};
 
