@@ -9,8 +9,6 @@ define(
 		return {
 			initialize: function() {
 
-				var socket = io.connect();
-
 				var localCursor = new LocalCursor();
 
 				var cursorCollection = new CursorCollection();
@@ -22,6 +20,8 @@ define(
 				var messageCollection = new MessageCollection();
 
 				var messageCollectionView = new MessageCollectionView({collection: messageCollection});
+
+				var socket = io.connect();
 
 
 				socket.on('updateCursor', cursorCollection.updateData);
