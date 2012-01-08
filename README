@@ -20,5 +20,8 @@ See:
 	/public/scripts/models/ => Backbone models
 	/public/scripts/views/ => Backbone views
 
+Note: I'm using a special version of Backbone ported by James Burke to be compabiable with require.js.
+Check it out here => https://github.com/jrburke/backbone/tree/optamd3
+
 
 
