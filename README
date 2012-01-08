@@ -1,1 +1,21 @@
-Website hosted at andy.io
+This is the source for my website located at andy.io.
+
+== Backend ==
+
+Built with Node.js,Coffeescript, Express, and Socket.io
+
+Foreman is used to start the server so it's compatible with Heroku and the Coffeescript doesn't need to be precompiled. Since Heroku doesn't support websockets yet, I'm hosting it on an EC2 instance.
+
+See: 	/App.coffee => node.js entry point
+
+== Frontend ==
+
+Built with Backbone.js, Require.js, Blueprint.css, and Jade templates
+
+See:	/public/scripts/main.js => configure require.js
+		/public/scripts/app.js => the javacsript application
+		/public/scripts/models/ => Backbone models
+		/public/scripts/views/ => Backbone views
+
+
+
