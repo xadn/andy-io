@@ -7,7 +7,7 @@ app.set 'view engine', 'jade'
 app.use express.static(__dirname + '/public')
 app.use require('connect-assets')()
 app.use express.bodyParser()
-app.listen 8080
+app.listen 80
 
 app.get '/', (request, response) ->
 	response.render 'index', { title: 'andy.io' }
