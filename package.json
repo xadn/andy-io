@@ -1,13 +1,21 @@
 {
-	"name"			:"andy-io",
-	"version"		:"0.0.1",
-	"dependencies"	:{
-		"express"		:">= 2.4.3",
-		"connect-assets":">= 2.1.5",
-		"coffee-script"	:">= 1.1.2",
-		"jade"			:">= 0.0.1",
-		"socket.io"		:">= 0.8.5",
-		"jquery"		:">= 1.6.3",
-		"underscore" 	:">= 1.2.2"
-	}
+  "name": "andy-io",
+  "version": "0.0.1-1",
+  "dependencies": {
+    "express": ">= 2.4.3",
+    "connect-assets": ">= 2.1.5",
+    "coffee-script": ">= 1.1.2",
+    "jade": ">= 0.0.1",
+    "socket.io": ">= 0.8.5",
+    "jquery": ">= 1.6.3",
+    "underscore": ">= 1.2.2"
+  },
+  "author": "aniccolai <andy.niccolai@gmail.com>",
+  "subdomain": "andy-io",
+  "scripts": {
+    "start": "app.coffee"
+  },
+  "engines": {
+    "node": "v0.6.x"
+  }
 }
