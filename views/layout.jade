@@ -2,13 +2,13 @@ doctype html
 html
 	head
 		title= title
-
-		link(rel='stylesheet', href='/stylesheets/app.css')
-		link(rel='stylesheet', href='/stylesheets/blueprint/screen.css', media='screen, projection')
-		link(rel='stylesheet', href='/stylesheets/blueprint/print.css', media='print')
-
 		script(data-main='scripts/require-config', src='scripts/libs/require.js')
-
+		link(rel='stylesheet', href='/stylesheets/app.css')
+		link(rel='stylesheet', href='/stylesheets/bootstrap.css')
 		link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Varela+Round')
 
-	body!= body
+	body.container!= body
+
+	footer.footer.row
+		a(href='http://andyniccolai.me') Andy Niccolai
+		a(href='http://github.com/aniccolai/andy-io') View Source on Github

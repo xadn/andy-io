@@ -1,6 +1,6 @@
 {
   "name": "andy-io",
-  "version": "0.0.1-1",
+  "version": "0.0.1-4",
   "dependencies": {
     "express": ">= 2.4.3",
     "connect-assets": ">= 2.1.5",
@@ -12,7 +12,9 @@
   },
   "author": "aniccolai <andy.niccolai@gmail.com>",
   "subdomain": "andy-io",
-  "domains": [ "andy.io" ],
+  "domains": [
+    "andy.io"
+  ],
   "scripts": {
     "start": "app.coffee"
   },

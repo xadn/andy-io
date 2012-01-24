@@ -9,11 +9,17 @@
 .title {
 	font-size: 5em;
 	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
-.vertical-middle {
-	position: absolute;
-	top: 40%;
+footer {
+	text-align: center;
+}
+
+footer a {
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 #sendMessage input[type='text'] {
