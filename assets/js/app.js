@@ -14,26 +14,26 @@ var IndexAppView = Backbone.View.extend({
 			// Views
 			// var localCursorView = new LocalCursorView({model: localCursor});
 			// var cursorCollectionView = new CursorCollectionView({collection: cursorCollection});
-			// var messageCollectionView = new MessageCollectionView({collection: messageCollection});
+			var messageCollectionView = new MessageCollectionView({collection: messageCollection});
 
 			// Socket.io handlers
-			// var socket = io.connect();
+			var socket = io.connect();
 
 			// socket.on('updateCursor', cursorCollection.updateData);
 
 			// socket.on('deleteCursor', cursorCollection.deleteData);
 
-			// socket.on('message', function(data) {
-			// 	messageCollection.add(data);
-			// });
+			socket.on('message', function(data) {
+				messageCollection.add(data);
+			});
 
 			// localCursor.bind('change', function() {
 			// 	socket.emit('updateCursor', localCursor);
 			// });
 
-			// messageCollection.bind('send', function(message) {
-			// 	socket.emit('message', message);
-			// });
+			messageCollection.bind('send', function(message) {
+				socket.emit('message', message);
+			});
 		}
 });
 
