@@ -1,6 +1,6 @@
 {
   "name": "andy-io",
-  "version": "0.0.1-7",
+  "version": "0.0.1-10",
   "dependencies": {
     "express": ">= 2.4.3",
     "connect-assets": "git+ssh://git://github.com/aniccolai/connect-assets.git",
