@@ -12,6 +12,7 @@
   },
   "author": "aniccolai <andy.niccolai@gmail.com>",
   "subdomain": "andy-io",
+  "domains": [ "andy.io" ],
   "scripts": {
     "start": "app.coffee"
   },
