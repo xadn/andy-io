@@ -1,9 +1,9 @@
 {
   "name": "andy-io",
-  "version": "0.0.1-5",
+  "version": "0.0.1-7",
   "dependencies": {
     "express": ">= 2.4.3",
-    "connect-assets": "git+ssh://git@github.com:aniccolai/connect-assets.git",
+    "connect-assets": "git+ssh://git://github.com/aniccolai/connect-assets.git",
     "coffee-script": ">= 1.1.2",
     "jade": ">= 0.0.1",
     "socket.io": ">= 0.8.5",
