@@ -5,7 +5,7 @@
 var MessageCollectionView = Backbone.View.extend({
 	el: $('body'),
 
-	collection: App.Collections.Messages,
+	collection: MessageCollection,
 
 	events: {
 		'submit' : 'sendMessage'

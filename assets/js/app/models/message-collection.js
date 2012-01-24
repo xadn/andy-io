@@ -1,5 +1,5 @@
 //= require message
 
-var App.Collections.Messages = Backbone.Collection.extend({
+var MessageCollection = Backbone.Collection.extend({
 	model: Message
 });

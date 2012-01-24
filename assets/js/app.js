@@ -5,14 +5,11 @@
 var IndexAppView = Backbone.View.extend({
 	initialize: function() {
 
-			var App = {};
-			App.Models = {};
-			App.Collections = {};
-			App.Views = {};
+
 			// Models
 			// var localCursor = new LocalCursor();
 			// var cursorCollection = new CursorCollection();
-			var messageCollection = new App.Collections.Messages();
+			var messageCollection = new MessageCollection();
 
 			// Views
 			// var localCursorView = new LocalCursorView({model: localCursor});
