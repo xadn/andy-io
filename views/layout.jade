@@ -2,9 +2,8 @@ doctype html
 html
 	head
 		title= title
-		script(data-main='scripts/require-config', src='scripts/libs/require.js')
-		link(rel='stylesheet', href='/stylesheets/app.css')
-		link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+		!=css('app')
+		!=css('bootstrap')
 		link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Varela+Round')
 
 	body.container!= body

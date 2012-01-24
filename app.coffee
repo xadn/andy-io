@@ -1,3 +1,5 @@
+# process.env.NODE_ENV = 'production'
+
 express = require('express')
 app	= express.createServer()
 io = require('socket.io').listen(app)
@@ -5,7 +7,7 @@ _ = require('underscore')
 
 app.set 'view engine', 'jade'
 app.use express.static(__dirname + '/public')
-# app.use require('connect-assets')()
+app.use require('connect-assets')()
 app.use express.bodyParser()
 app.listen 8080
 
