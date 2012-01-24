@@ -1,6 +1,6 @@
 {
   "name": "andy-io",
-  "version": "0.0.1-4",
+  "version": "0.0.1-5",
   "dependencies": {
     "express": ">= 2.4.3",
     "connect-assets": ">= 2.1.5",

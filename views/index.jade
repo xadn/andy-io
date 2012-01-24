@@ -1,6 +1,3 @@
-script
-	require(['app'], function(App) { App.initialize(); });
-
 h1.title
 	span.andy andy.
 	span.io io
@@ -15,6 +12,8 @@ div.row
 
 		ul#recievedMessages
 
-
-
-
+script(src='/socket.io/socket.io.js')
+!=js('vendor/jquery')
+!=js('vendor/underscore')
+!=js('vendor/backbone')
+!=js('app')
