@@ -20,8 +20,8 @@ namespace 'App.Views', (exports) ->
 
 		render: ->
 			$(@el).offset
-				left: @model.getLeft()
-				top: @model.getTop()
+				left: @model.get('x')
+				top: @model.get('y')
 			@
 
 		unrender: ->

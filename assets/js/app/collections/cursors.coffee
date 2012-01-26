@@ -6,12 +6,14 @@ namespace 'App.Collections', (exports) ->
 
 		model: App.Models.Cursor
 
+		socket: io.connect '/cursors'
+
 		initialize: ->
-			_.bindAll @, 'updateData', 'deleteData'
+			_.bindAll @
+			@socket.on 'update', @update
 
-		updateData: (data) ->
+		update: (data) ->
 			cursor = @get data.id
-
 			if cursor
 				cursor.set
 					x: data.x
@@ -19,7 +21,6 @@ namespace 'App.Collections', (exports) ->
 			else
 				@add data
 
-		deleteData: (data) ->
-			cursor = @get data.id
-			cursor.destroy() if cursor
-
+		# deleteData: (data) ->
+		# 	cursor = @get data.id
+		# 	cursor.destroy() if cursor

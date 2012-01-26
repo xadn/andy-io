@@ -4,8 +4,10 @@ namespace 'App.Models', (exports) ->
 
 	class exports.LocalCursor extends App.Models.Cursor
 
+		socket: io.connect '/cursors'
+
 		initialize: ->
-			_.bindAll @, 'getOS'
+			_.bindAll @
 			this.set OS: @getOS()
 
 		getOS: ->
@@ -13,3 +15,6 @@ namespace 'App.Models', (exports) ->
 				'Mac'
 			else
 				'Windows'
+
+		sync: ->
+			@socket.emit 'update', @

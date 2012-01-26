@@ -6,32 +6,14 @@
 
 class IndexAppView extends Backbone.View
 	initialize: ->
+		localCursor		= new App.Models.LocalCursor()
+		cursors			= new App.Collections.Cursors()
+		localCursorView	= new App.Views.LocalCursor(model: localCursor)
+		cursorsView		= new App.Views.Cursors(collection: cursors)
 
-		# Models
-		localCursor = new App.Models.LocalCursor()
-		cursorCollection = new App.Collections.Cursors()
-		messageCollection = new App.Collections.Messages()
+		messages		= new App.Collections.Messages()
+		messagesView	= new App.Views.Messages(collection: messages)
 
-		# Views
-		localCursorView = new App.Views.LocalCursor(model: localCursor)
-		cursorCollectionView = new App.Views.Cursors(collection: cursorCollection)
-		messageCollectionView = new App.Views.Messages(collection: messageCollection)
-
-		# Socket.io handlers
-		socket = io.connect()
-
-		socket.on 'updateCursor', cursorCollection.updateData
-
-		socket.on 'deleteCursor', cursorCollection.deleteData
-
-		socket.on 'message', (data) ->
-			messageCollection.add data
-
-		localCursor.bind 'change', ->
-			socket.emit 'updateCursor', localCursor
-
-		messageCollection.bind 'send', (message) ->
-			socket.emit 'message', message
 
 new IndexAppView()
 

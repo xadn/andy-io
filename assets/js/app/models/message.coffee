@@ -5,4 +5,4 @@ namespace 'App.Models', (exports) ->
 	class exports.Message extends Backbone.Model
 
 		defaults:
-			text: 'hello world'
+			text: "default text"

@@ -1,5 +1,3 @@
-# process.env.NODE_ENV = 'production'
-
 express = require('express')
 app	= express.createServer()
 io = require('socket.io').listen(app)
@@ -11,18 +9,27 @@ app.use require('connect-assets')()
 app.use express.bodyParser()
 app.listen 8080
 
+
 app.get '/', (request, response) ->
 	response.render 'index', { title: 'andy.io' }
 
 
-io.sockets.on 'connection', (client) ->
-	client.emit 'message', { message: "hello world" }
+messages = io.of '/messages'
 
-	client.on 'updateCursor', (data) ->
-		client.broadcast.volatile.emit 'updateCursor', _(data).extend {id : Number client.id}
+messages.on 'connection', (socket) ->
 
-	client.on 'message', (data) ->
-		client.broadcast.emit 'message', data
+	socket.emit 'new', text: "hello world"
 
-	client.on 'disconnect', ->
-		client.broadcast.emit 'deleteCursor', {id : Number client.id}
+	socket.on 'new', (data) ->
+		socket.broadcast.emit 'new', data
+
+
+cursors = io.of '/cursors'
+
+cursors.on 'connection', (socket) ->
+
+	socket.on 'update', (data) ->
+		socket.broadcast.emit 'update', _(data).extend {id : Number socket.id}
+
+	# client.on 'disconnect', ->
+		# client.broadcast.emit 'deleteCursor', {id : Number client.id}

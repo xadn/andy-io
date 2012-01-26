@@ -12,7 +12,11 @@ namespace 'App.Views', (exports) ->
 			mousemove: 'onMouseMove'
 
 		initialize: ->
-			_.bindAll @, 'onMouseMove'
+			_.bindAll @
 
 		onMouseMove: (event) ->
-			@model.setPosition event.pageX, event.pageY
+			@model.set
+				x: event.pageX
+				y: event.pageY
+			@model.save()
+
