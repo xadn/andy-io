@@ -15,6 +15,7 @@ class IndexAppView extends Backbone.View
 		messagesView	= new App.Views.Messages(collection: messages)
 
 
-new IndexAppView()
+$(document).ready ->
+	new IndexAppView()
 
 

@@ -14,5 +14,5 @@ namespace 'App.Views', (exports) ->
 
 		appendCursor: (cursor) ->
 			cursorView = new App.Views.Cursor model: cursor
-			$(@el).append cursorView.render().el
+			$(@el).prepend cursorView.render().el
 

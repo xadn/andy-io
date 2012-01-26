@@ -11,23 +11,17 @@ app.listen 8080
 
 
 app.get '/', (request, response) ->
-	response.render 'index', { title: 'andy.io' }
+	response.render 'index', title: 'andy.io'
 
 
-messages = io.of '/messages'
-
-messages.on 'connection', (socket) ->
-
+io.of('/messages').on 'connection', (socket) ->
 	socket.emit 'new', text: "hello world"
 
 	socket.on 'new', (data) ->
 		socket.broadcast.emit 'new', data
 
 
-cursors = io.of '/cursors'
-
-cursors.on 'connection', (socket) ->
-
+io.of('/cursors').on 'connection', (socket) ->
 	socket.on 'update', (data) ->
 		socket.broadcast.emit 'update', _(data).extend {id : Number socket.id}
 

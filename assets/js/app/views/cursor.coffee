@@ -13,10 +13,12 @@ namespace 'App.Views', (exports) ->
 			Windows : '/images/winCursor.png'
 
 		initialize: ->
-			_.bindAll @, 'render', 'unrender'
+			_.bindAll @
 			@model.bind 'change', @render
 			@model.bind 'destroy', @unrender
-			$(@el).attr 'src', @OSToIcon[@model.get('OS')]
+
+			$(@el).attr 'src', @OSToIcon[@model.get('os')]
+			$(@el).css('z-index', 1)
 
 		render: ->
 			$(@el).offset

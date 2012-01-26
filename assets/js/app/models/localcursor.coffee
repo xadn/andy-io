@@ -8,7 +8,7 @@ namespace 'App.Models', (exports) ->
 
 		initialize: ->
 			_.bindAll @
-			this.set OS: @getOS()
+			this.set os: @getOS()
 
 		getOS: ->
 			if ~navigator.appVersion.indexOf 'Mac'
