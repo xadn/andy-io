@@ -24,6 +24,3 @@ io.of('/messages').on 'connection', (socket) ->
 io.of('/cursors').on 'connection', (socket) ->
 	socket.on 'update', (data) ->
 		socket.broadcast.emit 'update', _(data).extend {id : Number socket.id}
-
-	# client.on 'disconnect', ->
-		# client.broadcast.emit 'deleteCursor', {id : Number client.id}

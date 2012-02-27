@@ -1,14 +1,13 @@
 {
   "name": "andy-io",
-  "version": "0.0.1-14",
+  "version": "0.0.1-35",
   "dependencies": {
-    "express": ">= 2.4.3",
-    "connect-assets": "git+ssh://git://github.com/aniccolai/connect-assets.git",
-    "coffee-script": ">= 1.1.2",
-    "jade": ">= 0.0.1",
-    "socket.io": ">= 0.8.5",
-    "jquery": ">= 1.6.3",
-    "underscore": ">= 1.2.2"
+    "express": "*",
+    "connect-assets": "*",
+    "coffee-script": "*",
+    "jade": "*",
+    "socket.io": "*",
+    "underscore": "*"
   },
   "author": "aniccolai <andy.niccolai@gmail.com>",
   "subdomain": "andy-io",
