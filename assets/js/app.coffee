@@ -1,5 +1,3 @@
-#= require_tree app/models
-#= require_tree app/collections
 #= require app/views/messages
 #= require app/views/localcursor
 #= require app/views/cursors
