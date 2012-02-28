@@ -4,10 +4,10 @@ io = require('socket.io').listen(app)
 _ = require('underscore')
 
 io.enable 'browser client minification'
-# io.enable 'browser client etag'
-# io.enable 'browser client gzip'
-# io.set 'log level', 1
-# io.set 'transports', ['websocket','flashsocket','htmlfile','xhr-polling','jsonp-polling']
+io.enable 'browser client etag'
+io.enable 'browser client gzip'
+io.set 'log level', 1
+io.set 'transports', ['websocket','flashsocket','htmlfile','xhr-polling','jsonp-polling']
 
 app.set 'view engine', 'jade'
 app.use express.static(__dirname + '/public')
